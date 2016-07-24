@@ -18,21 +18,21 @@ var lista = [
   {
     timeLeft: '15:02',
     barrioPoints: 250,
-    name: '¡Nu ma Pliz!',
-    description: 'Tomate 3 mezcales en menos de una hora en el bar Al Andara'
+    name: 'Pistear como Campeón',
+    description: 'Tomate 3 mezcales en la Cantina Pepe en menos de una hora'
   },
 
   {
     timeLeft: '11:02',
     barrioPoints: 350,
     name: '¡Virgencita Pliz!',
-    description: 'Tomate 3 mezcales en menos de una hora en el bar Al Andara'
+    description: 'Tómate una Selfie, persignándote en la Catedral'
   },
   {
     timeLeft: '08:02',
     barrioPoints: 500,
-    name: '¡Virgencita Pliz!',
-    description: 'Tomate 3 mezcales en menos de una hora en el bar Al Andara'
+    name: 'A la antigüita',
+    description: 'Compra antiguedades en la Lagunilla'
   }
 ]
 
