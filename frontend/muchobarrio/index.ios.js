@@ -49,8 +49,6 @@ var markers = [
   },
 ];
 
-
-
 class muchobarrio extends Component {
   render() {
     return (
@@ -65,8 +63,14 @@ class muchobarrio extends Component {
         </View>
         <MapView
           style={styles.map}
+          region={{
+            latitude:   19.433435,
+            longitude: -99.141208,
+            latitudeDelta: 0.008,
+            longitudeDelta: 0.001
+          }}
+          zoomEnabled={true}
           showsUserLocation={true}
-          region={this.state.region}
           annotations={markers}
         />
       </View>
@@ -75,7 +79,6 @@ class muchobarrio extends Component {
 }
 
 // 2460 total pizzas
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
