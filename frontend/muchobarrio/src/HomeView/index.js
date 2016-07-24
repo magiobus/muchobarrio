@@ -18,6 +18,39 @@ class HomeView extends Component{
   render(){
 
     const {data} = this.props
+    var markers = [
+      {
+        latitude: 19.436417,
+        longitude: -99.141791,
+        title: 'Bellas Artes',
+        subtitle: 'Ve aquí papu'
+      },
+      {
+        latitude: 19.433459,
+        longitude: -99.141224,
+        title: 'FrikiPlaza',
+      },
+      {
+        latitude: 19.435059,
+        longitude: -99.140001,
+        title: 'Sanborns Azulejos',
+      },
+      {
+        latitude: 19.434134,
+        longitude: -99.141617,
+        title: 'Sears Centro Histórico',
+      },
+      {
+        latitude: 19.435706,
+        longitude: -99.140269,
+        title: 'Palacio Postal',
+      },
+      {
+        latitude: 19.435848,
+        longitude: -99.139595,
+        title: 'Palacio de Minería',
+      },
+    ];
 
     return (
       <View style={styles.homeContainer}>
@@ -31,7 +64,7 @@ class HomeView extends Component{
           }}
           zoomEnabled={true}
           showsUserLocation={true}
-          annotations={data.markers}
+          annotations={markers}
         />
         <View style={styles.timeBar}>
           <View style={styles.leftTimeBar}></View>
