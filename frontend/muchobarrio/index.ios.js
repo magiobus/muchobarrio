@@ -18,6 +18,8 @@ import {
 import HomeView from './src/HomeView'
 import QuestListView from './src/QuestListView'
 
+import axios from 'axios'
+
 var {height, width} = Dimensions.get('window')
 var markers = [
   {
@@ -56,6 +58,16 @@ var markers = [
 class muchobarrio extends Component {
   constructor(props, context){
       super(props, context)
+
+
+      axios.get('http://54.171.90.196:3000/main/')
+      .then(function(res) {
+        console.warn(res)
+      })
+      .catch(function(err){
+        console.warn(err);
+      })
+
       this.state = {
         mainView: 'home',
         region: {

@@ -1,6 +1,9 @@
 
-conn = new Mongo();
-db = conn.getDB("templo");
+//conn = new Mongo();
+
+db = connect('mongodb://coffi:coffi@ds029745.mlab.com:29745/barrio')
+
+//db = conn.getDB("templo");
 
 db.users.insert({'name': 'Bety', type:'princeso', 'level': 1})
 db.users.insert({'name': 'Rabbit', type:'papu', 'level': 2})
