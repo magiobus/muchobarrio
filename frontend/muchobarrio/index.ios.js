@@ -11,11 +11,11 @@ import {
   Image,
   View,
   Dimensions,
-  MapView
+  MapView,
+  TouchableOpacity
 } from 'react-native';
 
-import ActionButton from 'react-native-action-button';
-import Icon from 'react-native-vector-icons/Ionicons';
+import HomeView from './src/HomeView'
 
 var {height, width} = Dimensions.get('window')
 var markers = [
@@ -59,15 +59,29 @@ class muchobarrio extends Component {
         region: {
           'latitude': 19.439748,
           'longitude': -99.134112
+        },
+        currentQuest: {
+          timeLeft: '12:02',
+          barrioPoints: 150,
+          name: '¡Virgencita Pliz!',
+          description: 'Tomate 3 mezcales en menos de una hora en el bar Al Andara'
         }
       }
   }
 
+  showQuests () {
+    console.warn('lololololol')
+  }
+
   render() {
+    const {region, currentQuest} = this.state
+
     return (
       <View style={styles.container}>
         <View style={styles.top}></View>
-        <Image source={require('./img/dare-button.png')} style={styles.challengesButtonView}></Image>
+        <TouchableOpacity onPress={this.showQuests.bind(this)} style={styles.challengesButtonView}>
+          <Image source={require('./img/dare-button.png')} style={styles.challengesButtonImage}></Image>
+        </TouchableOpacity>
         <Image source={require('./img/stats.png')} style={styles.statsButton}></Image>
         <View style={styles.userContainer}>
           <Image source={require('./img/04-lady-barrio.png')} style={styles.avatar}/>
@@ -78,29 +92,8 @@ class muchobarrio extends Component {
             </View>
             <Text style={styles.userTeam}>Darks</Text>
           </View>
-          {/*<ActionButton buttonColor="rgba(231,76,60,1)" position="right" offsetY={30/30}>
-            <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-              <Icon name="md-create" style={styles.actionButtonIcon} />
-            </ActionButton.Item>
-          </ActionButton>*/}
         </View>
-        <MapView
-          style={styles.map}
-          region={{
-            latitude:   19.433435,
-            longitude: -99.141208,
-            latitudeDelta: 0.008,
-            longitudeDelta: 0.001
-          }}
-          zoomEnabled={true}
-          showsUserLocation={true}
-          annotations={markers}
-        />
-        <View style={styles.buttom}>
-          <View style={styles.timeBar}>
-            <View style={styles.leftTimeBar}></View>
-          </View>
-        </View>
+        <HomeView data={{region: region, currentQuest: currentQuest, markers: markers}}></HomeView>
       </View>
     );
   }
@@ -164,6 +157,10 @@ const styles = StyleSheet.create({
     height: 80,
     width: 80
   },
+  challengesButtonImage: {
+    height: 80,
+    width: 80
+  },
   'statsButton': {
     position: 'absolute',
     top: 10,
@@ -176,25 +173,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     height: 22,
     color: 'white',
-  },
-  map: {
-    flex: 1,
-    width: width,
-    height: (height - 300)
-  },
-  buttom: {
-    height: height,
-    backgroundColor: '#f2f2f2'
-  },
-  timeBar: {
-    height: 10,
-    width: width,
-    backgroundColor: '#e2e2e2'
-  },
-  leftTimeBar: {
-    height: 10,
-    width: (width - 200),
-    backgroundColor: '#ffff66'
   }
 });
 
