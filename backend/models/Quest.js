@@ -3,7 +3,7 @@
 var mongoose = require('./Model')
 
 var Quest = new mongoose.Schema({
-  name: String,
+  title: String,
   points: Number,
   description: String,
   time: Number,
@@ -20,6 +20,15 @@ exports.getQuest = function (questId) {
     model.findOne({id: questId}, (err, res) => {
       console.log(err, res)
       resolve(res)
+    })
+  })
+}
+
+exports.getAllQuests = function () {
+  return  new Promise((resolve, reject) => {
+    model.find().exec((err, res) => {
+      var result = res.sort(function() {return .5 - Math.random();})
+      resolve(result)
     })
   })
 }

@@ -19,3 +19,15 @@ exports.getUser = function (userId) {
     })
   })
 }
+
+
+exports.getUserByLevel = function(level, points) {
+
+  return new Promise((resolve, reject) => {
+    model.find({'level': level}).limit(1).exec((err, res) => {
+      var user = res[0]
+      user.points = points
+      resolve(user)
+    })
+  })
+}
