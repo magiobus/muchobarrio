@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 
 import HomeView from './src/HomeView'
+import QuestListView from './src/QuestListView'
 
 var {height, width} = Dimensions.get('window')
 var markers = [
@@ -56,6 +57,7 @@ class muchobarrio extends Component {
   constructor(props, context){
       super(props, context)
       this.state = {
+        mainView: 'home',
         region: {
           'latitude': 19.439748,
           'longitude': -99.134112
@@ -65,12 +67,71 @@ class muchobarrio extends Component {
           barrioPoints: 150,
           name: '¡Virgencita Pliz!',
           description: 'Tomate 3 mezcales en menos de una hora en el bar Al Andara'
+        },
+        selectedQuest: {
+          isSelected: false,
+          name: 'Tomar un chingo'
         }
       }
   }
 
   showQuests () {
-    console.warn('lololololol')
+    //console.warn('lololololol')
+    this.setState({
+      mainView: 'questList'
+    })
+  }
+
+  showMainView () {
+    this.setState({
+      'mainView': 'home'
+    })
+  }
+
+  toogleActionView (){
+
+    var data = this.state
+
+    if (data.mainView == 'home') {
+      return (<TouchableOpacity onPress={this.showQuests.bind(this)} style={styles.challengesButtonView}>
+        <Image source={require('./img/dare-button.png')} style={styles.challengesButtonImage}></Image>
+      </TouchableOpacity>)
+    } else if(data.mainView == 'questList'){
+      return (<TouchableOpacity onPress={this.showMainView.bind(this)} style={styles.challengesButtonView}>
+        <Image source={require('./img/close-button.png')} style={styles.challengesButtonImage}></Image>
+      </TouchableOpacity>)
+    }
+  }
+
+  renderMainView () {
+    var data = this.state
+
+    if (data.mainView == 'home') {
+      return <HomeView data={{region: data.region, currentQuest: data.currentQuest, markers: data.markers}}></HomeView>
+    } else if(data.mainView == 'questList'){
+      return <QuestListView></QuestListView>
+    }
+  }
+
+  renderPopUp() {
+    var data = this.state
+
+    if (this.state.isSelected){
+      return (
+        <View>
+          <View>
+            <Text>{this.state.selectedQuest.name}</Text>
+          </View>
+          <View>
+            <Text>¿Seguro de aceptar el reto?</Text>
+            <Text>Rifate como los grandes</Text>
+            <Text>Va Va Va</Text>
+            <Text>Neeeel</Text>
+          </View>
+        </View>
+      )
+    }
+
   }
 
   render() {
@@ -79,9 +140,11 @@ class muchobarrio extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.top}></View>
-        <TouchableOpacity onPress={this.showQuests.bind(this)} style={styles.challengesButtonView}>
-          <Image source={require('./img/dare-button.png')} style={styles.challengesButtonImage}></Image>
-        </TouchableOpacity>
+
+        {this.renderPopUp()}
+
+        {this.toogleActionView()}
+
         <Image source={require('./img/stats.png')} style={styles.statsButton}></Image>
         <View style={styles.userContainer}>
           <Image source={require('./img/04-lady-barrio.png')} style={styles.avatar}/>
@@ -93,7 +156,8 @@ class muchobarrio extends Component {
             <Text style={styles.userTeam}>Darks</Text>
           </View>
         </View>
-        <HomeView data={{region: region, currentQuest: currentQuest, markers: markers}}></HomeView>
+        {this.renderMainView()}
+        {/*<HomeView data={{region: region, currentQuest: currentQuest, markers: markers}}></HomeView>*/}
       </View>
     );
   }

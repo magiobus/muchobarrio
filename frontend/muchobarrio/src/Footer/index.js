@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     flex: 1,
-    backgroundColor: '#f2f2f2'
+    backgroundColor: '#f2f2f2',
+    height: 150
   },
   buttomTexts: {
     width: (width * 0.7)
