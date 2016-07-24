@@ -29,7 +29,7 @@ class muchobarrio extends Component {
           </View>
         </View>
         <MapView
-          style={{height: 200, margin: 40}}
+          style={styles.map}
           showsUserLocation={true}
         />
       </View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   avatar: {
     borderRadius: 50,
     height: 100,
-    width: 100
+    width: 100,
   },
   'userTitle':{
     fontSize: 20,
@@ -69,6 +69,10 @@ const styles = StyleSheet.create({
   'userTeam': {
     fontSize: 15,
   },
+  map:{
+    flex: 1,
+    width: width,
+  }
 });
 
 AppRegistry.registerComponent('muchobarrio', () => muchobarrio);
