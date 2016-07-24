@@ -8,23 +8,26 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  MapView,
+  Image,
+  View,
+  Dimensions
 } from 'react-native';
+
+var {height, width} = Dimensions.get('window');
 
 class muchobarrio extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Bienvenido a MuchoBarrio!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <View style={styles.top}></View>
+        <View style={styles.userContainer}>
+          <Image source={require('./img/grumpycat.jpeg')} style={styles.avatar}/>
+          <View style={styles.userInfoContainer}>
+            <Text style={styles.userTitle}>Magio</Text>
+            <Text style={styles.userTeam}>Darks</Text>
+          </View>
+        </View>
       </View>
     );
   }
@@ -33,19 +36,34 @@ class muchobarrio extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  top: {
+    backgroundColor: '#0097a7',
+    height: 18
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  userContainer:{
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 120,
+    backgroundColor: '#00bcd4'
+  },
+  userInfoContainer:{
+    width: (width - 100) * 0.8,
+  },
+  avatar: {
+    borderRadius: 50,
+    height: 100,
+    width: 100
+  },
+  'userTitle':{
+    fontSize: 20,
+  },
+  'userTeam': {
+    fontSize: 15,
   },
 });
 
