@@ -12,10 +12,13 @@ router.get('/', function (req, res, next) {
 })
 
 router.get('/main/', function (req, res) {
-  console.log(req.query)
+
+  var points = Math.floor((Math.random() * 700) + 100)
+  var level = Math.floor(points / 100)
+
   Q.all([
-    User.getUser(req.query.userName),
-    Quest.getQuest(req.query.questName)
+    User.getUserByLevel(level, points),
+    Quest.getAllQuests()
   ]).then(function (data) {
     res.send(data)
   })
